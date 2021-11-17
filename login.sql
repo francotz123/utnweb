@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
   `usuario` text COLLATE utf8_spanish_ci NOT NULL,
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-( 'Usuario 1', 'admin', 'admin123', 'Administrador', '', 1, '0000-00-00 00:00:00', '2020-02-16 22:45:39');
+INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
+(1, 'Usuario 1', 'admin', 'admin123', 'Administrador', '', 1, '0000-00-00 00:00:00', '2020-02-16 22:45:39');
 
 --
 -- Índices para tablas volcadas
