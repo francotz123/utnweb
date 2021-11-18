@@ -29,7 +29,7 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">Usuarios</h3>
-
+        <a href="editarUsuario" title="Editar datos" class="btn btn-primary btn-sm">Nuevo</a>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                   title="Collapse">

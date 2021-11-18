@@ -74,7 +74,7 @@ class ControladorUsuarios{
 				$rol = $_SESSION['usuario']['idrol'];
 			 }
 
-			$id = $_POST["id"];
+			$id = $_POST["idusuarios"];
 
 			$tabla = "usuarios";
 			$itemsValores = [
@@ -84,10 +84,13 @@ class ControladorUsuarios{
 				"idusuarios" => $id
 			];
 
-			 $respuesta = ModeloUsuarios::updateUser($tabla, $itemsValores);
-
+			 $respuesta = ModeloUsuarios::updateUser($tabla, $itemsValores, $id);
 			 if($respuesta){
-				echo "<script>alert({$respuesta});</script>";
+				echo '<script>
+
+						window.location = "usuarios";
+
+					</script>';
 			 }
 
 		}

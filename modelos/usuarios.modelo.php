@@ -31,17 +31,18 @@ Class ModeloUsuarios{
 
     }
 
-    static public function updateUser($tabla, $itemsValores){
-        $setear = "";
-        foreach($itemsValores as $key => $value){
-            $setear += "{$key} = {$value},";
-        }
-
-        $setear = substr($setear, 0, -1);
+    static public function updateUser($tabla, $itemsValores, $id){
     
-        $x = Conexion::conectar()->prepare("UPDATE $tabla SET $setear");
-        $x->execute();
-        return $x->fetch();
+        $x = Conexion::conectar()->prepare("UPDATE usuarios SET usuario=:usuario, password=:password, idrol=:idrol WHERE idusuarios=:idusuarios");
+     
+        $x->bindParam(':usuario',$itemsValores["usuario"],PDO::PARAM_STR, 25);
+        $x->bindParam(':password',$itemsValores["password"],PDO::PARAM_STR, 25);
+        $x->bindParam(':idrol',$itemsValores["idrol"],PDO::PARAM_STR, 25);
+        $x->bindParam(':idusuarios',$itemsValores["idusuarios"],PDO::PARAM_STR, 25);
+        return $x->execute();
+
+
+       
     }
 }
 

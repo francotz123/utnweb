@@ -11,13 +11,15 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+  <?php if($edit) { ?>
     <h1>
-      
-      Editar Usuario 
-    
+        Editar Usuario 
     </h1>
-
+  <?php }else{ ?>
+      <h1>
+         Crear Usuario 
+      </h1>
+  <?php } ?>
     <ol class="breadcrumb">
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -55,10 +57,11 @@
                     <input type="text" class="form-control" name="usuario" placeholder="ingrese Nombre De Usuario">
                 <?php } ?>
                 </div>
+                <input type="hidden" class="form-control" name="idusuarios" value= "<?php echo intval($rutas[1])?>">
                 <div class="form-group col-md-6">
                     <label for="inputAddress">Contraseña</label>
                     <?php if($edit) { ?>
-                        <input type="password" class="form-control" name="password" value="<?php echo$user['password']?>">
+                        <input type="password" class="form-control" name="password" value="<?php echo $user['password']?>">
                     <?php }else { ?>
                         <input type="password" class="form-control" name="password" placeholder="Ingrese Contraseña">
                     <?php } ?>
@@ -79,11 +82,11 @@
 
             <button type="submit" class="btn btn-primary">Guardar</button>
             <?php
-            $insert = new ControladorUsuarios();
+            $action = new ControladorUsuarios();
              if($edit){
-                $insert -> actualizarUsuario();
+                $action -> actualizarUsuario();
             }else{
-
+              $action -> crearUsuario();
             }
               ?>
              </form>
