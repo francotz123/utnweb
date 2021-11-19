@@ -50,7 +50,8 @@
 				if(sizeof($users) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{ 
-					foreach ($users as $user){ ?>
+					foreach ($users as $user){ 
+            if($user["activo"] == 1 ){?>
 						<tr>
 							<td><?php echo $user["idusuarios"] ?></td>
 							<td><?php echo $user["usuario"] ?></td>
@@ -58,8 +59,8 @@
               <td>
               <?php if(intval($user["idusuarios"]) !== 1 ) { ?>
 								<a href="editarUsuario-<?=$user["idusuarios"]?>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                <a href="index.php?aksi=delete&nik='.$row['codigo'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-              <?php }?>
+                <a href="borrarUsuario-<?=$user["idusuarios"]?>" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+              <?php }}?>
 							</td>
 					<?php }
 			  	}

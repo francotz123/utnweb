@@ -16,7 +16,8 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
-				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $_POST["ingPassword"]){
+				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $_POST["ingPassword"] && $respuesta["activo"] == 1){
+					
                    
 					$_SESSION["iniciarSesion"] = "ok";
 					$_SESSION["usuario"] = $respuesta;
@@ -96,6 +97,72 @@ class ControladorUsuarios{
 		}
 		
 	}
+
+	public function crearUsuario(){
+		if(isset($_POST["usuario"]) || isset($_POST["password"]) || isset($_POST["rol"])){
+			$respuesta = null;
+
+			 if(isset($_POST["usuario"])){
+				$nombre = $_POST["usuario"];
+			 }else{
+				$nombre = $_SESSION['usuario']['usuario'];
+			 }
+
+			 if(isset($_POST["password"])){
+				$pass = $_POST["password"];
+			 }else{
+				$pass = $_SESSION['usuario']['password'];
+			 }
+
+			 if(isset($_POST["rol"])){
+				$rol = $_POST["rol"];
+			 }else{
+				$rol = $_SESSION['usuario']['idrol'];
+			 }
+
+
+			$tabla = "usuarios";
+			$itemsValores = [
+				"usuario" => $nombre , 
+				"password" => $pass, 
+				"idrol" => $rol,
+			];
+			
+			 $respuesta = ModeloUsuarios::createUser($itemsValores);
+
+			 if($respuesta){
+				echo '<script>
+
+						window.location = "usuarios";
+
+					</script>';
+			 }
+
+		}
+	}
+	public function deleteUser($id){
+		$resultado =  ModeloUsuarios::deleteUserDB($id);
+
+		if($resultado){
+			echo '<script>
+
+			window.location = "usuarios";
+
+				</script>';
+		}else{
+			echo '<script>
+
+			alert "No se pudo eliminar el usuario nro ' . $id. '";
+
+				</script>';
+			echo '<script>
+
+			window.location = "usuarios";
+
+			</script>';
+		}
+	}
+
 
 }
 	

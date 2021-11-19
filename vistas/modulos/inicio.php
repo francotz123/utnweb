@@ -4,7 +4,7 @@
     
     <h1>
       
-      Tablero
+      UTN Gestor
       
       <small>Panel de Control</small>
     
@@ -14,7 +14,7 @@
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Tablero</li>
+      <li class="active">UTN Gestor</li>
     
     </ol>
 
@@ -26,7 +26,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Titulo</h3>
+        <h3 class="box-title">UTN - Facultad Regional Concordia</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -38,7 +38,15 @@
       </div>
       <div class="box-body">
 
-
+        <div class="jumbotron">
+          <h1 class="display-4">Bienvenido <?php echo  $_SESSION['usuario']['usuario']?>!</h1>
+          <p class="lead">Sitio no oficial de la Universidad Tecnológica Nacional (UTN) Facultad Regional Concordia.</p>
+          <hr class="my-4">
+          <p>La Universidad Tecnológica Nacional (UTN) es una institución educativa de estudios superiores con la misión especifica de crear, preservar y transmitir la técnica de la cultura universal en el campo de la Tecnología.</p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="https://www.frcon.utn.edu.ar/" role="button">Sitio Oficial</a>
+          </p>
+        </div>
         
       </div>
       <!-- /.box-body -->
