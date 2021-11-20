@@ -3,7 +3,9 @@
     if($rutas[1] !== null){
         $edit = true;
         $user = new ControladorUsuarios();
+        $userControler = $user -> getRolString($rutas[1]);
         $user = $user -> getOneUser(intval($rutas[1]));
+
     }
 
 
@@ -67,9 +69,15 @@
                     <?php }else { ?>
                         <input type="password" class="form-control" name="password" placeholder="Ingrese Contraseña">
                     <?php } ?>
+                    
                 </div>
             </div>
-            <div class="form-row">
+            <?php if($edit) { ?>
+              <div class="form-group col-md-6">
+              <input type="text" class="form-control" name="password" value="<?php echo $userControler["tipo_rol"] ?>" disabled><br>
+            </div>
+            <?php }else { ?>
+              <div class="form-row">
                 <div class="form-group col-md-6"></div>
                     <label for="inputAddress2">Rol</label>
                     <select name="rol">
@@ -79,10 +87,17 @@
                     </select>
                 </div>
             </div>
+            <?php } ?>
 
-            
+            <?php if($edit) { ?>
+            <div class="form-group col-md-6"> 
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            <?php }else { ?>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            <?php } ?>
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
+
             <?php
             $action = new ControladorUsuarios();
              if($edit){

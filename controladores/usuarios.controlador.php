@@ -1,7 +1,8 @@
 <?php
 
-class ControladorUsuarios{
 
+class ControladorUsuarios{
+	
 	public function ctrIngresoUsuario(){
 
 		if(isset($_POST["ingUsuario"])){
@@ -50,6 +51,14 @@ class ControladorUsuarios{
 
 	public function getOneUser($id){
 		return  ModeloUsuarios::getOneUser("idusuarios",$id);
+	}
+
+	public function getUserIdName($usuario){
+		return  ModeloUsuarios::getIdForUser("usuario",$usuario);
+	}
+
+	public function getRolString($id){
+		return  ModeloUsuarios::getRolString("idusuarios",$id);
 	}
 
 	public function actualizarUsuario(){
@@ -127,16 +136,37 @@ class ControladorUsuarios{
 				"password" => $pass, 
 				"idrol" => $rol,
 			];
-			
-			 $respuesta = ModeloUsuarios::createUser($itemsValores);
+			$rolContructor = new ControladorRoles();
+			$tiporol = $rolContructor -> getNombreRol($rol);
 
-			 if($respuesta){
+			$respuesta = ModeloUsuarios::createUser($itemsValores);
+
+			if($respuesta){
+				$user = ModeloUsuarios::getIdForUser("usuario",$nombre);
+			 if( $tiporol == "Alumno"){
 				echo '<script>
 
-						window.location = "usuarios";
+				window.location = "crearAlumno-'.$user["idusuarios"].'";
 
-					</script>';
+			</script>';
+		
+			 }else if( $tiporol == "Profesor"){
+				echo '<script>
+
+				window.location = "crearProfesor-'.$user["idusuarios"].'";
+
+				</script>';
+			 }else{
+				echo '<script>
+
+				window.location = "usuarios";
+
+				</script>';
 			 }
+				
+			}
+			
+			
 
 		}
 	}

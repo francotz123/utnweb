@@ -31,6 +31,24 @@ Class ModeloUsuarios{
 
     }
 
+    static public function getRolString($item,$id){
+
+        $x=Conexion::conectar()->prepare("SELECT r.tipo_rol FROM roles r INNER JOIN usuarios u ON r.idroles = u.idrol where $item = :$item");
+        $x->bindParam(":".$item,$id, PDO::PARAM_STR);
+        $x->execute();
+        return $x->fetch();
+
+    }
+
+    static public function getIdForUser($item,$valor){
+
+        $x=Conexion::conectar()->prepare("SELECT idusuarios FROM usuarios where $item = :$item");
+        $x->bindParam(":".$item,$valor, PDO::PARAM_STR);
+        $x->execute();
+        return $x->fetch();
+
+    }
+
     static public function updateUser($tabla, $itemsValores, $id){
     
         $x = Conexion::conectar()->prepare("UPDATE usuarios SET usuario=:usuario, password=:password, idrol=:idrol WHERE idusuarios=:idusuarios");

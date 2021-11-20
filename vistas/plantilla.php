@@ -89,7 +89,9 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
          $rutas[0] == "editarUsuario"|| 
          $rutas[0] == "cursos" ||
          $rutas[0] == "crearUsuario" ||
-         $rutas[0] == "borrarUsuario")
+         $rutas[0] == "borrarUsuario" ||
+         $rutas[0] == "crearAlumno" ||
+         $rutas[0] == "crearProfesor")
        {
 
         include "modulos/".$rutas[0].".php";
