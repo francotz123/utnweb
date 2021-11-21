@@ -34,7 +34,7 @@
 		<?php if ($rol !== 1) {?>
 
 			<li>
-				<a href="categorias">
+				<a href="misCursos">
 					<i class="fa fa-graduation-cap"></i>
 					<span>Mis Cursos</span>
 				</a>

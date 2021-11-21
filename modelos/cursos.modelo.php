@@ -11,6 +11,14 @@ Class ModeloCursos{
         return $x->fetchAll();
     }
 
+    static public function getAllCursosAlumnoByID($id){
+        $x = Conexion::conectar()->prepare("SELECT cursos.* FROM alumnos_cursos JOIN cursos ON cursos.idcursos = alumnos_cursos.idcurso WHERE alumnos_cursos.idalumno = :id");
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     static public function createCurso($itemsValores){
         

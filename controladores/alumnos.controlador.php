@@ -37,4 +37,11 @@ class ControladorAlumnos{
         }
     }
 
+    public function getAlumnos(){
+        return ModeloAlumnos::getAllAlumnos();
+    }
+
+    public function getAlumnoPorIDUsuario($id){
+        return ModeloAlumnos::getAlumnoByUserID($id);
+    }
 }

@@ -5,6 +5,9 @@ class ControladorCursos{
         return  ModeloCursos::getAllCursos();
     }
 
+	public function getCursosAlumno($id){
+		return ModeloCursos::getAllCursosAlumnoByID($id);
+	}
 
     public function crearCurso(){
 		if(isset($_POST["nombreCurso"]) || isset($_POST["anio"]) || isset($_POST["fechaInicio"]) || isset($_POST["fechaFin"]) || isset($_POST["idprofesores"]) || isset($_POST["idmaterias"])){
