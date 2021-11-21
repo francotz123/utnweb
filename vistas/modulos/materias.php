@@ -1,6 +1,6 @@
 <?php if(intval( $_SESSION['usuario']['idrol']) == 1) { 
-  $cursos = new ControladorCursos();
-  $cursos = $cursos -> getCursos();
+  $materias = new ControladorMaterias();
+  $materias = $materias -> getMaterias();
 ?>
 <div class="content-wrapper">
 
@@ -8,7 +8,7 @@
     
     <h1>
       
-      Administrar Cursos
+      Administrar Materias
     
     </h1>
 
@@ -16,7 +16,7 @@
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar Cursos</li>
+      <li class="active">Administrar Materias</li>
     
     </ol>
 
@@ -28,8 +28,8 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Cursos</h3>
-        <a href="editarCurso" title="Editar datos" class="btn btn-primary btn-sm">Nuevo</a>
+        <h3 class="box-title">Materias</h3>
+        <a href="editarMateria" title="Editar datos" class="btn btn-primary btn-sm">Nuevo</a>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                   title="Collapse">
@@ -42,30 +42,19 @@
       <table class="table table-striped table-hover">
 				<tr>
           <th>No</th>
-					<th>Nombre Curso</th>
-          <th>Año</th>
-          <th>Fecha Inicio</th>
-          <th>Fecha Fin</th>
-          <th>Profesor</th>
-          <th>Materia</th>
+					<th>Nombre Materia</th>
           <th>Acciones</th>
 				</tr>
 				<?php
-				if(sizeof($cursos) == 0){
+				if(sizeof($materias) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{ 
-					foreach ($cursos as $curso){ ?>
+					foreach ($materias as $materia){ ?>
 						<tr>
-							<td><?php echo $curso["idcursos"] ?></td>
-							<td><?php echo $curso["nombre_curso"] ?></td>
-              <td><?php echo $curso["anio"] ?></td>
-              <td><?php echo $curso["fecha_inicio"] ?></td>
-              <td><?php echo $curso["fecha_fin"] ?></td>
-              <td><?php echo $curso["profesor"] ?></td>
-              <td><?php echo $curso["materia"] ?></td>
+							<td><?php echo $materia["idmaterias"] ?></td>
+							<td><?php echo $materia["nombreMateria"] ?></td>
               <td>
-                <a href="editarCurso-<?=$curso["idcursos"]?>" title="Alumnos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-								<a href="editarCurso-<?=$curso["idcursos"]?>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+								<a href="editarMateria-<?=$materia["idmaterias"]?>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 <a href="" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos ?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>
 					<?php }

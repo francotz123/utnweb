@@ -1,6 +1,10 @@
 <?php
 
 class ControladorProfesores{
+
+    public function getProfesores(){
+        return ModeloProfesores::getAllProfesor();
+    }
     public function crearProfesor(){
         if(isset($_POST["nombre"]) || isset($_POST["dni"]) || isset($_POST["idusuario"])){
             $nombre ="";

@@ -14,4 +14,10 @@ Class ModeloProfesores{
         return $x->execute();
 
    }
+
+   static public function getAllProfesor(){
+    $x=Conexion::conectar()->prepare("SELECT idprofesores, CONCAT(nombre, ' - ', dni) as 'nombre' FROM profesores  ");
+    $x->execute();
+    return $x->fetchAll();
+    }
 }

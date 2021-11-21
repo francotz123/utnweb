@@ -45,7 +45,7 @@
 		<?php if($rol == 1) {?>
 
 			<li>
-				<a href="productos">
+				<a href="materias">
 					<i class="fa fa-book"></i>
 					<span>Materias</span>
 
