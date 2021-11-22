@@ -8,6 +8,10 @@ class ControladorMaterias{
 		return  ModeloMaterias::getOneMateria("idmaterias",$id);
 	}
 
+	public function getMateriasAlumno($id){
+		return ModeloMaterias::getMateriasByAlumnoID($id);
+	}
+
     public function actualizarMateria(){
         if(isset($_POST["nombreMateria"]) || isset($_POST["idmaterias"])){
 			$respuesta = null;

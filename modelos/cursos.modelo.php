@@ -28,7 +28,6 @@ Class ModeloCursos{
         return $x->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
     static public function createCurso($itemsValores){
         
         $resultado1 = false;

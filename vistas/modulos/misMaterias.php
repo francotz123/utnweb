@@ -1,8 +1,8 @@
 <?php if(intval( $_SESSION['usuario']['idrol']) == 3) { 
-  $cursos = new ControladorCursos();
+  $materias = new ControladorMaterias();
   $alumnos = new ControladorAlumnos();
   $alumno = $alumnos->getAlumnoPorIDUsuario($_SESSION['usuario']['idusuarios']);
-  $cursos = $cursos->getCursosAlumno($alumno['idalumnos']);
+  $materias = $materias->getMateriasAlumno($alumno['idalumnos']);
 ?>
 <div class="content-wrapper">
 
@@ -10,7 +10,7 @@
     
     <h1>
       
-      Mis Cursos
+      Mis Materias
     
     </h1>
 
@@ -18,7 +18,7 @@
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Mis Cursos</li>
+      <li class="active">Mis Materias</li>
     
     </ol>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Cursos</h3>
+        <h3 class="box-title">Materias</h3>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                   title="Collapse">
@@ -41,33 +41,25 @@
       </div>
       <div class="box-body">
       <table class="table table-striped table-hover">
-				<tr>
-          <th>No</th>
-					<th>Nombre Curso</th>
-          <th>Año</th>
-          <th>Fecha Inicio</th>
-          <th>Fecha Fin</th>
-          <th>Profesor</th>
-          <th>Materia</th>
-				</tr>
-				<?php
-				if(sizeof($cursos) == 0){
-					echo '<tr><td colspan="8">No hay datos.</td></tr>';
-				}else{ 
-					foreach ($cursos as $curso){ ?>
-						<tr>
-							<td><?php echo $curso["idcursos"] ?></td>
-							<td><?php echo $curso["nombre_curso"] ?></td>
-              <td><?php echo $curso["anio"] ?></td>
-              <td><?php echo $curso["fecha_inicio"] ?></td>
-              <td><?php echo $curso["fecha_fin"] ?></td>
-              <td><?php echo $curso["profesor"] ?></td>
-              <td><?php echo $curso["materia"] ?></td>
-            </tr>
-					<?php }
-			  	}
-				?>
-			</table>
+        <tr>
+            <th>Nombre</th>
+            <th>Curso</th>
+            <th>Profesor</th>
+        </tr>
+        <?php
+        if(sizeof($materias) == 0){
+            echo '<tr><td colspan="8">No hay datos.</td></tr>';
+        }else{ 
+            foreach ($materias as $materia){ ?>
+        <tr>
+            <td><?php echo $materia["materia"] ?></td>
+            <td><?php echo $materia["curso"] ?></td>
+            <td><?php echo $materia["profesor"] ?></td>
+        </tr>
+                <?php }
+            }
+            ?>
+	    </table>
       </div>
       <!-- /.box-body -->
       <div class="box-footer">

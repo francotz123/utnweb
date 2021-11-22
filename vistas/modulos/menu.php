@@ -57,7 +57,7 @@
 			<?php if($rol == 3) {?>
 
 			<li>
-				<a href="productos">
+				<a href="misMaterias">
 					<i class="fa fa-book"></i>
 					<span>Mis Materias</span>
 				</a>

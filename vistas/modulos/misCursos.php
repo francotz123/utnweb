@@ -42,7 +42,6 @@
       <div class="box-body">
       <table class="table table-striped table-hover">
 				<tr>
-          <th>No</th>
 					<th>Nombre Curso</th>
           <th>Año</th>
           <th>Fecha Inicio</th>
@@ -56,7 +55,6 @@
 				}else{ 
 					foreach ($cursos as $curso){ ?>
 						<tr>
-							<td><?php echo $curso["idcursos"] ?></td>
 							<td><?php echo $curso["nombre_curso"] ?></td>
               <td><?php echo $curso["anio"] ?></td>
               <td><?php echo $curso["fecha_inicio"] ?></td>
