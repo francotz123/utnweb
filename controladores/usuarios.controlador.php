@@ -223,6 +223,10 @@ class ControladorUsuarios{
 			</script>';
 		}
 	}
+
+	public function getCursosAlumno($id){
+		return ModeloCursos::getAllCursosAlumnoByID($id);
+	}
 }
 	
 

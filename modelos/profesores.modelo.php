@@ -20,4 +20,12 @@ Class ModeloProfesores{
     $x->execute();
     return $x->fetchAll();
     }
+
+    static public function getProfesorByUserID($id){
+        $x = Conexion::conectar()->prepare("SELECT * FROM profesores WHERE idusuario = :id");
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetch();
+    }
 }

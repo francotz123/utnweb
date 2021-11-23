@@ -100,7 +100,10 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
          $rutas[0] == "borrarMateria" ||
          $rutas[0] == "borrarCurso" ||
          $rutas[0] == "borrarAlumnoCurso" ||
-         $rutas[0] == "darAltaUsuario")
+         $rutas[0] == "darAltaUsuario" ||
+         $rutas[0] == "misCursos" ||
+         $rutas[0] == "misMaterias" ||
+         $rutas[0] == "misAlumnos")
        {
 
         include "modulos/".$rutas[0].".php";

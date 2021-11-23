@@ -167,5 +167,36 @@ static public function updateProfesorCurso($idProfesor, $idCurso){
         return $x->execute();
     }
 
+    static public function getAllCursosAlumnoByID($id){
+        $x = Conexion::conectar()->prepare(
+            "SELECT c.*, p.nombre AS 'profesor', m.nombreMateria as 'materia'
+            FROM alumnos_cursos 
+            JOIN cursos c ON c.idcursos = alumnos_cursos.idcurso
+            JOIN profesores_cursos pc ON pc.idcurso = c.idcursos
+            JOIN profesores p ON p.idprofesores = pc.idprofesor
+            JOIN cursos_materias cm ON cm.idcurso = c.idcursos
+            JOIN materias m ON m.idmaterias = cm.idmateria 
+            WHERE alumnos_cursos.idalumno = :id"
+        );
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    static public function getAllCursosProfesorByID($id){
+        $x = Conexion::conectar()->prepare(
+            "SELECT c.*, m.nombreMateria as 'materia'
+            FROM profesores_cursos pc
+            JOIN profesores p ON p.idprofesores = pc.idprofesor
+            JOIN cursos c ON c.idcursos = pc.idcurso
+            JOIN cursos_materias cm ON cm.idcurso = c.idcursos
+            JOIN materias m ON m.idmaterias = cm.idmateria 
+            WHERE pc.idprofesor = :id"
+        );
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

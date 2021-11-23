@@ -34,7 +34,7 @@
 		<?php if ($rol !== 1) {?>
 
 			<li>
-				<a href="categorias">
+				<a href="misCursos">
 					<i class="fa fa-graduation-cap"></i>
 					<span>Mis Cursos</span>
 				</a>
@@ -57,7 +57,7 @@
 			<?php if($rol == 3) {?>
 
 			<li>
-				<a href="productos">
+				<a href="misMaterias">
 					<i class="fa fa-book"></i>
 					<span>Mis Materias</span>
 				</a>
@@ -68,7 +68,7 @@
 			<?php if($rol == 2) {?>
 
 			<li>
-				<a href="productos">
+				<a href="misAlumnos">
 					<i class="fa fa-product-hunt"></i>
 					<span>Mis Alumnos</span>
 				</a>

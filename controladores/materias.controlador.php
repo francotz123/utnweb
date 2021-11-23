@@ -83,4 +83,8 @@ class ControladorMaterias{
 			</script>';
 		}
 	}
+
+	public function getMateriasAlumno($id){
+		return ModeloMaterias::getMateriasByAlumnoID($id);
+	}
 }

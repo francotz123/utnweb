@@ -45,5 +45,8 @@ class ControladorProfesores{
             }
         }
     }
-
+    
+    public function getProfesorPorIDUsuario($id) {
+        return ModeloProfesores::getProfesorByUserID($id);
+    }
 }

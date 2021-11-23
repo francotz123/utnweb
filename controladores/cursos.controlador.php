@@ -179,4 +179,11 @@ class ControladorCursos{
 			</script>';
 		}
 	}
+	public function getCursosAlumno($id){
+		return ModeloCursos::getAllCursosAlumnoByID($id);
+	}
+
+	public function getCursosProfesor($id){
+		return ModeloCursos::getAllCursosProfesorByID($id);
+	}
 }
