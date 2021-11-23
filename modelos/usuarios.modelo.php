@@ -41,12 +41,10 @@ Class ModeloUsuarios{
     }
 
     static public function getIdForUser($item,$valor){
-
-        $x=Conexion::conectar()->prepare("SELECT idusuarios FROM usuarios where $item = :$item");
-        $x->bindParam(":".$item,$valor, PDO::PARAM_STR);
+        $x=Conexion::conectar()->prepare("SELECT idusuarios FROM usuarios where usuario = :usuario");
+        $x->bindParam(":usuario",$valor, PDO::PARAM_STR);
         $x->execute();
         return $x->fetch();
-
     }
 
     static public function updateUser($tabla, $itemsValores, $id){
@@ -77,6 +75,15 @@ Class ModeloUsuarios{
 
     static public function deleteUserDB($id){
         $valor = 0;
+        $x = Conexion::conectar()->prepare("UPDATE usuarios SET activo=:activo WHERE  idusuarios=:idusuarios");
+        $x->bindParam(':activo', $valor,PDO::PARAM_STR, 25);
+        $x->bindParam(':idusuarios',$id,PDO::PARAM_STR, 25);
+        return $x->execute();
+
+    }
+
+    static public function altaUserDB($id){
+        $valor = 1;
         $x = Conexion::conectar()->prepare("UPDATE usuarios SET activo=:activo WHERE  idusuarios=:idusuarios");
         $x->bindParam(':activo', $valor,PDO::PARAM_STR, 25);
         $x->bindParam(':idusuarios',$id,PDO::PARAM_STR, 25);

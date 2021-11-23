@@ -62,114 +62,135 @@ class ControladorUsuarios{
 	}
 
 	public function actualizarUsuario(){
-
-		if(isset($_POST["usuario"]) || isset($_POST["password"]) || isset($_POST["rol"])){
-			$respuesta = null;
-
-			 if(isset($_POST["usuario"])){
-				$nombre = $_POST["usuario"];
-			 }else{
-				$nombre = $_SESSION['usuario']['usuario'];
-			 }
-
-			 if(isset($_POST["password"])){
-				$pass = $_POST["password"];
-			 }else{
-				$pass = $_SESSION['usuario']['password'];
-			 }
-
-			 if(isset($_POST["rol"])){
-				$rol = $_POST["rol"];
-			 }else{
-				$rol = $_SESSION['usuario']['idrol'];
-			 }
-
-			$id = $_POST["idusuarios"];
-
-			$tabla = "usuarios";
-			$itemsValores = [
-				"usuario" => $nombre , 
-				"password" => $pass, 
-				"idrol" => $rol,
-				"idusuarios" => $id
-			];
-
-			 $respuesta = ModeloUsuarios::updateUser($tabla, $itemsValores, $id);
-			 if($respuesta){
-				echo '<script>
-
-						window.location = "usuarios";
-
-					</script>';
-			 }
-
-		}
 		
+		if(isset($_POST["usuario"]) || isset($_POST["password"]) || isset($_POST["rol"])){
+			if (!strpos($_POST["usuario"], " ")){
+				$respuesta = null;
+			
+				if(isset($_POST["usuario"])){
+					$nombre = $_POST["usuario"];
+				}else{
+					$nombre = $_SESSION['usuario']['usuario'];
+				}
+
+				if(isset($_POST["password"])){
+					$pass = $_POST["password"];
+				}else{
+					$pass = $_SESSION['usuario']['password'];
+				}
+
+				if(isset($_POST["rol"])){
+					$rol = $_POST["rol"];
+				}else{
+					$rol = $_SESSION['usuario']['idrol'];
+				}
+
+				$id = $_POST["idusuarios"];
+
+				$tabla = "usuarios";
+				$itemsValores = [
+					"usuario" => $nombre , 
+					"password" => $pass, 
+					"idrol" => $rol,
+					"idusuarios" => $id
+				];
+
+				$respuesta = ModeloUsuarios::updateUser($tabla, $itemsValores, $id);
+				if($respuesta){
+					echo '<script>
+
+							window.location = "usuarios";
+
+						</script>';
+				}
+			}else{
+				echo'<script> 
+					var opcion = confirm("El nombre de usuario no puede contener espacios.");
+					window.location = "editarUsuario-'.$_POST["idusuarios"].'";
+					</script>';
+			}
+		}
 	}
 
 	public function crearUsuario(){
 		if(isset($_POST["usuario"]) || isset($_POST["password"]) || isset($_POST["rol"])){
-			$respuesta = null;
 
-			 if(isset($_POST["usuario"])){
-				$nombre = $_POST["usuario"];
-			 }else{
-				$nombre = $_SESSION['usuario']['usuario'];
-			 }
+			if (!strpos($_POST["usuario"], " ")){
+				$existeNombre =  ModeloUsuarios::getIdForUser("usuario",$_POST["usuario"]);
 
-			 if(isset($_POST["password"])){
-				$pass = $_POST["password"];
-			 }else{
-				$pass = $_SESSION['usuario']['password'];
-			 }
-
-			 if(isset($_POST["rol"])){
-				$rol = $_POST["rol"];
-			 }else{
-				$rol = $_SESSION['usuario']['idrol'];
-			 }
-
-
-			$tabla = "usuarios";
-			$itemsValores = [
-				"usuario" => $nombre , 
-				"password" => $pass, 
-				"idrol" => $rol,
-			];
-			$rolContructor = new ControladorRoles();
-			$tiporol = $rolContructor -> getNombreRol($rol);
-
-			$respuesta = ModeloUsuarios::createUser($itemsValores);
-
-			if($respuesta){
-				$user = ModeloUsuarios::getIdForUser("usuario",$nombre);
-			 if( $tiporol == "Alumno"){
-				echo '<script>
-
-				window.location = "crearAlumno-'.$user["idusuarios"].'";
-
-			</script>';
-		
-			 }else if( $tiporol == "Profesor"){
-				echo '<script>
-
-				window.location = "crearProfesor-'.$user["idusuarios"].'";
-
-				</script>';
-			 }else{
-				echo '<script>
-
-				window.location = "usuarios";
-
-				</script>';
-			 }
+				if(empty($existeNombre["idusuarios"])){
+					$respuesta = null;
+	
+					if(isset($_POST["usuario"])){
+						$nombre = $_POST["usuario"];
+					}else{
+						$nombre = $_SESSION['usuario']['usuario'];
+					}
+	
+					if(isset($_POST["password"])){
+						$pass = $_POST["password"];
+					}else{
+						$pass = $_SESSION['usuario']['password'];
+					}
+	
+					if(isset($_POST["rol"])){
+						$rol = $_POST["rol"];
+					}else{
+						$rol = $_SESSION['usuario']['idrol'];
+					}
+	
+	
+					$tabla = "usuarios";
+					$itemsValores = [
+						"usuario" => $nombre , 
+						"password" => $pass, 
+						"idrol" => $rol,
+					];
+					$rolContructor = new ControladorRoles();
+					$tiporol = $rolContructor -> getNombreRol($rol);
+	
+					$respuesta = ModeloUsuarios::createUser($itemsValores);
+	
+					if($respuesta){
+						$user = ModeloUsuarios::getIdForUser("usuario",$nombre);
+					if( $tiporol == "Alumno"){
+						echo '<script>
+	
+						window.location = "crearAlumno-'.$user["idusuarios"].'";
+	
+					</script>';
 				
+					}else if( $tiporol == "Profesor"){
+						echo '<script>
+	
+						window.location = "crearProfesor-'.$user["idusuarios"].'";
+	
+						</script>';
+					}else{
+						echo '<script>
+	
+						window.location = "usuarios";
+	
+						</script>';
+					}
+						
+					}
+				}else{
+					echo'<script> 
+					var opcion = confirm("No se pudo crear el usuario. Nombre de usuario ya existe.");
+				
+					</script>';
+				}
+	
+			}else{
+				echo'<script> 
+					var opcion = confirm("El nombre de usuario no puede contener espacios.");
+				
+					</script>';
 			}
-			
-			
-
 		}
 	}
+	
 	public function deleteUser($id){
 		$resultado =  ModeloUsuarios::deleteUserDB($id);
 
@@ -181,19 +202,27 @@ class ControladorUsuarios{
 				</script>';
 		}else{
 			echo '<script>
-
-			alert "No se pudo eliminar el usuario nro ' . $id. '";
-
-				</script>';
-			echo '<script>
-
+			var opcion = confirm("No se pudo dar de baja al usuario '.$id.'.");
 			window.location = "usuarios";
-
 			</script>';
 		}
 	}
 
+	public function altaUser($id){
+		$resultado =  ModeloUsuarios::altaUserDB($id);
+		if($resultado){
+			echo '<script>
 
+			window.location = "usuarios";
+
+				</script>';
+		}else{
+			echo '<script>
+			var opcion = confirm("No se pudo dar de alta al usuario '.$id.'.");
+			window.location = "usuarios";
+			</script>';
+		}
+	}
 }
 	
 

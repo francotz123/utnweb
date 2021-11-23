@@ -1,6 +1,10 @@
 <?php
 
 class ControladorAlumnos{
+
+    public function getAlumnos(){
+        return ModeloAlumnos::getAllAlumnos();
+    }
     public function crearAlumno(){
         if(isset($_POST["nombre"]) || isset($_POST["dni"]) || isset($_POST["idusuario"])){
             $nombre ="";

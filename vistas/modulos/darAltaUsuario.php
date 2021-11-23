@@ -2,12 +2,12 @@
 
 
 if($rutas[1] !== null){
-    if($rutas[1] !== "borrar"){
+    if($rutas[1] !== "alta"){
         echo'<script>
 
-        var resultado = window.confirm("Estas seguro de dar de baja al usuario nro '.$rutas[1].'?");
+        var resultado = window.confirm("Estas seguro de dar de Alta al usuario nro '.$rutas[1].'?");
         if (resultado === true) {
-            window.location = "borrarUsuario-borrar-'.$rutas[1].'";
+            window.location = "darAltaUsuario-alta-'.$rutas[1].'";
         } else { 
             window.location = "usuarios";
         }
@@ -16,7 +16,7 @@ if($rutas[1] !== null){
 
     }else{
         $user = new ControladorUsuarios();
-        $user = $user -> deleteUser(intval($rutas[2]));
+        $user = $user -> altaUser(intval($rutas[2]));
     }
         
      }

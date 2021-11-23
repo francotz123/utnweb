@@ -94,7 +94,13 @@ if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
          $rutas[0] == "crearProfesor" ||
          $rutas[0] == "materias" ||
          $rutas[0] == "editarMateria" ||
-         $rutas[0] == "editarCurso")
+         $rutas[0] == "editarCurso" || 
+         $rutas[0] == "agregarAlumnosCurso" || 
+         $rutas[0] == "alumnosCurso" ||
+         $rutas[0] == "borrarMateria" ||
+         $rutas[0] == "borrarCurso" ||
+         $rutas[0] == "borrarAlumnoCurso" ||
+         $rutas[0] == "darAltaUsuario")
        {
 
         include "modulos/".$rutas[0].".php";

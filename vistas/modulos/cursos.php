@@ -64,9 +64,9 @@
               <td><?php echo $curso["profesor"] ?></td>
               <td><?php echo $curso["materia"] ?></td>
               <td>
-                <a href="editarCurso-<?=$curso["idcursos"]?>" title="Alumnos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                <a href="alumnosCurso-<?=$curso["idcursos"]?>" title="Alumnos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 								<a href="editarCurso-<?=$curso["idcursos"]?>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                <a href="" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos ?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                <a href="borrarCurso-<?=$curso["idcursos"]?>" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos ?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>
 					<?php }
 			  	}

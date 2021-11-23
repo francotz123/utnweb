@@ -36,6 +36,12 @@ Class ModeloMaterias{
 
     return $x->execute();
 
-}
+    }
+
+    static public function deleteMateriaDB($id){
+        $x = Conexion::conectar()->prepare("DELETE FROM materias WHERE idmaterias=:idmaterias");
+        $x->bindParam(':idmaterias',$id,PDO::PARAM_STR, 25);
+        return $x->execute();
+    }
 
 }

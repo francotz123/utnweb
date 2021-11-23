@@ -66,4 +66,21 @@ class ControladorMaterias{
 		}
 	}
 
+	public function deleteMateria($id){
+	
+		$resultado =  ModeloMaterias::deleteMateriaDB($id);
+		
+		if($resultado){
+			echo '<script>
+
+			window.location = "materias";
+
+				</script>';
+		}else{
+			echo'<script> 
+			var opcion = confirm("No se pudo borrar la meteria '.$id.' por que está siendo utilizada.");
+			window.location = "materias";
+			</script>';
+		}
+	}
 }

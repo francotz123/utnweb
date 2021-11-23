@@ -16,7 +16,7 @@ Class ModeloProfesores{
    }
 
    static public function getAllProfesor(){
-    $x=Conexion::conectar()->prepare("SELECT idprofesores, CONCAT(nombre, ' - ', dni) as 'nombre' FROM profesores  ");
+    $x=Conexion::conectar()->prepare("SELECT p.idprofesores, CONCAT(p.nombre, ' - ', p.dni) as 'nombre' FROM profesores p INNER JOIN usuarios u ON p.idusuario = u.idusuarios WHERE u.activo = 1 ");
     $x->execute();
     return $x->fetchAll();
     }

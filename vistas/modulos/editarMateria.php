@@ -48,17 +48,16 @@
          <form method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                <label for="inputEmail4">Materia</label>
-                <?php if($edit) { ?>
-                    <input type="text" class="form-control" name="nombreMateria" value="<?php echo$materia['nombreMateria']?>">
-                <?php }else { ?>
-                    <input type="text" class="form-control" name="nombreMateria" placeholder="ingrese Nombre De Usuario">
-                <?php } ?>
-                </div>
-                <?php if($edit) { ?>
-                  <input type="hidden" class="form-control" name="idmaterias" value= "<?php echo intval($rutas[1])?>">
-                <?php } ?>
-                
+                  <label for="inputEmail4">Materia</label>
+                  <?php if($edit) { ?>
+                      <input type="text" class="form-control" name="nombreMateria" value="<?php echo$materia['nombreMateria']?>">
+                  <?php }else { ?>
+                      <input type="text" class="form-control" name="nombreMateria" placeholder="ingrese Nombre De Usuario">
+                  <?php } ?>
+                  </div>
+                  <?php if($edit) { ?>
+                    <input type="hidden" class="form-control" name="idmaterias" value= "<?php echo intval($rutas[1])?>">
+                  <?php } ?>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
 

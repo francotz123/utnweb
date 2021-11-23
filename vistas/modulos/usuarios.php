@@ -44,23 +44,33 @@
           <th>No</th>
 					<th>Usuario</th>
           <th>Rol</th>
+          <th>Estado</th>
           <th>Acciones</th>
 				</tr>
 				<?php
 				if(sizeof($users) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{ 
-					foreach ($users as $user){ 
-            if($user["activo"] == 1 ){?>
+					foreach ($users as $user){?>
 						<tr>
 							<td><?php echo $user["idusuarios"] ?></td>
 							<td><?php echo $user["usuario"] ?></td>
               <td><?php echo $user["tipo_rol"] ?></td>
               <td>
-              <?php if(intval($user["idusuarios"]) !== 1 ) { ?>
+                <?php if(intval($user["activo"]) == 1){
+                   echo "Activo";
+                }else{
+                  echo "De Baja";
+                } ?>
+              </td>
+              <td>
+              <?php if(intval($user["idusuarios"]) !== 1 && intval($user["activo"]) == 1) { ?>
 								<a href="editarUsuario-<?=$user["idusuarios"]?>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                <a href="borrarUsuario-<?=$user["idusuarios"]?>" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-              <?php }}?>
+                <a href="borrarUsuario-<?=$user["idusuarios"]?>" title="Dar de Baja" onclick="return confirm(\'Esta seguro de dar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+              <?php }?>
+              <?php if(intval($user["activo"]) != 1) { ?>
+                <a href="darAltaUsuario-<?=$user["idusuarios"]?>" title="Dar de Alta" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+              <?php }?>
 							</td>
 					<?php }
 			  	}

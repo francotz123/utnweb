@@ -1,8 +1,9 @@
 <?php if(intval($_SESSION['usuario']['idrol']) == 1) { 
     $edit = false;
     if($rutas[1] !== null){
+   
         $edit = true;
-        $curso = new ControladorCurso();
+        $curso = new ControladorCursos();
         $curso = $curso -> getOneCurso(intval($rutas[1]));
     }
     $materias = new ControladorMaterias();
@@ -90,6 +91,9 @@
                         <input type="date" class="form-control" name="fechaFin"  placeholder="ingrese Fecha Inicio">
                     <?php } ?>
                 </div>
+                <?php if($edit) { ?>
+                    <input type="hidden" class="form-control" name="idcursos" value= "<?php echo intval($rutas[1])?>">
+                  <?php } ?>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -100,7 +104,13 @@
                 <?php } ?>
                 </select>
                 </div>
-                <div class="form-group col-md-6">
+                <?php if($edit) { ?>
+              <div class="form-group col-md-6">
+              <label for="inputAddress">Materia</label>
+              <input type="text" class="form-control" name="password" value="<?php echo$curso['materia']?>" disabled><br>
+            </div>
+            <?php }else { ?>
+              <div class="form-group col-md-6">
                     <label for="inputAddress">Materia</label>
                     <select name="idmaterias">
                     <?php foreach ($materias as $materia){ ?>
@@ -108,6 +118,9 @@
                     <?php } ?>
                     </select>
                 </div>
+            </div>
+            <?php } ?>
+                
             </div>
 
     
