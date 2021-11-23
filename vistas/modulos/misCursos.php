@@ -1,8 +1,18 @@
-<?php if(intval( $_SESSION['usuario']['idrol']) == 3) { 
+<?php if(intval($_SESSION['usuario']['idrol']) == 2 || intval($_SESSION['usuario']['idrol']) == 3) { 
   $cursos = new ControladorCursos();
-  $alumnos = new ControladorAlumnos();
-  $alumno = $alumnos->getAlumnoPorIDUsuario($_SESSION['usuario']['idusuarios']);
-  $cursos = $cursos->getCursosAlumno($alumno['idalumnos']);
+
+  if(intval($_SESSION['usuario']['idrol']) == 2){
+    $profesores = new ControladorProfesores();
+    $profesor = $profesores->getProfesorPorIDUsuario($_SESSION['usuario']['idusuarios']);
+    $cursos =  $cursos->getCursosProfesor($profesor['idprofesores']);
+  }
+  
+  if(intval($_SESSION['usuario']['idrol']) == 3){
+    $alumnos = new ControladorAlumnos();
+    $alumno = $alumnos->getAlumnoPorIDUsuario($_SESSION['usuario']['idusuarios']);
+    $cursos = $cursos->getCursosAlumno($alumno['idalumnos']);
+  }
+
 ?>
 <div class="content-wrapper">
 
@@ -46,7 +56,9 @@
           <th>Año</th>
           <th>Fecha Inicio</th>
           <th>Fecha Fin</th>
+          <?php if(intval($_SESSION['usuario']['idrol']) == 3): ?>
           <th>Profesor</th>
+          <?php endif ?>
           <th>Materia</th>
 				</tr>
 				<?php
@@ -59,7 +71,9 @@
               <td><?php echo $curso["anio"] ?></td>
               <td><?php echo $curso["fecha_inicio"] ?></td>
               <td><?php echo $curso["fecha_fin"] ?></td>
+              <?php if(intval($_SESSION['usuario']['idrol']) == 3): ?>
               <td><?php echo $curso["profesor"] ?></td>
+              <?php endif ?>
               <td><?php echo $curso["materia"] ?></td>
             </tr>
 					<?php }

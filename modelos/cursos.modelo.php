@@ -28,6 +28,22 @@ Class ModeloCursos{
         return $x->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    static public function getAllCursosProfesorByID($id){
+        $x = Conexion::conectar()->prepare(
+            "SELECT c.*, m.nombreMateria as 'materia'
+            FROM profesores_cursos pc
+            JOIN profesores p ON p.idprofesores = pc.idprofesor
+            JOIN cursos c ON c.idcursos = pc.idcurso
+            JOIN cursos_materias cm ON cm.idcurso = c.idcursos
+            JOIN materias m ON m.idmaterias = cm.idmateria 
+            WHERE pc.idprofesor = :id"
+        );
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     static public function createCurso($itemsValores){
         
         $resultado1 = false;

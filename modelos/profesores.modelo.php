@@ -15,9 +15,17 @@ Class ModeloProfesores{
 
    }
 
-   static public function getAllProfesor(){
-    $x=Conexion::conectar()->prepare("SELECT idprofesores, CONCAT(nombre, ' - ', dni) as 'nombre' FROM profesores  ");
-    $x->execute();
-    return $x->fetchAll();
+    static public function getProfesorByUserID($id){
+        $x = Conexion::conectar()->prepare("SELECT * FROM profesores WHERE idusuario = :id");
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetch();
+    }
+
+    static public function getAllProfesor(){
+        $x=Conexion::conectar()->prepare("SELECT idprofesores, CONCAT(nombre, ' - ', dni) as 'nombre' FROM profesores  ");
+        $x->execute();
+        return $x->fetchAll();
     }
 }
