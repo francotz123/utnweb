@@ -14,6 +14,21 @@ Class ModeloAlumnos{
 
     }
 
+    static public function getAlumnosProfesorByID($id){
+        $x = Conexion::conectar()->prepare(
+            "SELECT a.*, c.nombre_curso AS 'curso'
+            FROM profesores_cursos pc
+            JOIN cursos c ON c.idcursos = pc.idcurso
+            JOIN alumnos_cursos ac ON ac.idcurso = c.idcursos
+            JOIN alumnos a ON a.idalumnos = ac.idalumno   
+            WHERE pc.idprofesor = :id"
+        );
+        $x->execute([
+            ':id' => $id
+        ]);
+        return $x->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     static public function getAllAlumnos(){
         $x = Conexion::conectar()->prepare("SELECT * FROM alumnos");
         $x->execute();

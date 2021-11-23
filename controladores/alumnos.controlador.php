@@ -37,6 +37,10 @@ class ControladorAlumnos{
         }
     }
 
+    public function getAlumnosProfesor($id){
+        return ModeloAlumnos::getAlumnosProfesorByID($id);
+    }
+
     public function getAlumnos(){
         return ModeloAlumnos::getAllAlumnos();
     }

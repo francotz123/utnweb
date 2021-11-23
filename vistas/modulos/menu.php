@@ -68,7 +68,7 @@
 			<?php if($rol == 2) {?>
 
 			<li>
-				<a href="productos">
+				<a href="misAlumnos">
 					<i class="fa fa-product-hunt"></i>
 					<span>Mis Alumnos</span>
 				</a>
